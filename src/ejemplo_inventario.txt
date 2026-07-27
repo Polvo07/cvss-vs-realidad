@@ -1,0 +1,10 @@
+# Inventario de ejemplo: vulnerabilidades conocidas en productos comunes.
+# Reemplaza esta lista por los CVE que reporte tu escáner o tu proveedor.
+
+CVE-2024-3400
+CVE-2023-4966
+CVE-2024-21762
+CVE-2024-1709
+CVE-2023-34362
+CVE-2024-23897
+CVE-2025-0001
