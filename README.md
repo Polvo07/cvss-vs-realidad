@@ -57,7 +57,7 @@ priorización en lugar de discutirlo en abstracto.
 
 <!-- HALLAZGOS:INICIO -->
 
-*Cifras generadas automáticamente por `src/generar_hallazgos.py` el 27/07/2026, sobre 166,776 vulnerabilidades publicadas desde 2023-01-01.*
+*Cifras generadas automáticamente por `src/generar_hallazgos.py` el 28/07/2026, sobre 166,776 vulnerabilidades publicadas desde 2023-01-01.*
 
 | Indicador | Valor |
 |---|---|

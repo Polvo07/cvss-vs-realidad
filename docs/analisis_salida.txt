@@ -1,0 +1,88 @@
+Universo: 166,776 vulnerabilidades publicadas desde 2023-01-01
+
+========================================================================
+1. ¿QUÉ TAN BIEN ACIERTA EL CVSS?
+========================================================================
+De cada banda de severidad, cuántas terminaron explotándose:
+
+Banda CVSS         Vulnerabilidades   Explotadas   % explotado
+--------------------------------------------------------------
+Crítica                      15,943          250        1.57%
+Alta                         55,947          286        0.51%
+Media                        77,270           84        0.11%
+Baja                          9,766            4        0.04%
+Sin puntaje                   7,850            0        0.00%
+
+  Solo el 1.57% de las vulnerabilidades marcadas como críticas
+  llegó a explotarse. Tratar 15,943 vulnerabilidades como
+  urgentes cuando casi ninguna lo es no es priorizar: es ruido.
+
+========================================================================
+2. LAS QUE SÍ SE EXPLOTAN, ¿LAS HABRÍA VISTO EL CVSS?
+========================================================================
+Severidad CVSS de las 624 vulnerabilidades explotadas:
+
+  Crítica           250  (40.1%)
+  Alta              286  (45.8%)
+  Media              84  (13.5%)
+  Baja                4  ( 0.6%)
+
+  374 vulnerabilidades (59.9%) se están
+  explotando pese a NO estar calificadas como críticas. Un equipo que
+  atienda solo lo crítico las deja sin parchar.
+
+  EPSS mediano de las explotadas : 0.4059
+  EPSS mediano del resto         : 0.0033
+
+========================================================================
+3. CON CAPACIDAD LIMITADA, ¿QUÉ ESTRATEGIA ACIERTA MÁS?
+========================================================================
+Supuesto: el equipo alcanza a parchar 100 vulnerabilidades.
+En el universo hay 624 que se están explotando.
+Ninguna estrategia mira el catálogo KEV para ordenar: se evalúa qué tan
+bien predice cada criterio sin conocer la respuesta.
+
+Estrategia                     Aciertos    % del total explotado
+----------------------------------------------------------------
+Por severidad (CVSS)                  4                    0.6%
+Por probabilidad (EPSS)              84                   13.5%
+Por riesgo combinado                 80                   12.8%
+
+  Priorizar por riesgo combinado encuentra 20.0 veces
+  más amenazas reales que priorizar por severidad, con el mismo esfuerzo.
+
+========================================================================
+4. CUÁNTO SE GANA AL AMPLIAR LA CAPACIDAD
+========================================================================
+ Capacidad       CVSS       EPSS     Riesgo   % del total
+----------------------------------------------------------
+        50          0         47         48         7.7%
+       100          4         84         80        13.5%
+       250          8        171        170        27.4%
+       500         21        241        227        38.6%
+     1,000         46        302        292        48.4%
+
+  Cada columna muestra cuántas amenazas reales atrapa cada criterio
+  al parchar esa cantidad de vulnerabilidades.
+
+========================================================================
+5. LÍMITES DE ESTE ANÁLISIS
+========================================================================
+- 7,850 vulnerabilidades (4.7%) no tienen puntaje
+  CVSS asignado y quedan fuera de la estrategia por severidad.
+- 6,018 (3.6%) no tienen puntaje EPSS.
+
+- El modelo de EPSS se entrena con señales de explotación observada, así
+  que comparte información con el catálogo KEV. La comparación lo favorece
+  por construcción. La conclusión defendible no es que EPSS sea infalible,
+  sino que la severidad por sí sola no basta para priorizar.
+
+- El KEV recoge explotación confirmada y publicada. Hay ataques que nunca
+  llegan al catálogo, así que es un piso, no la cifra total.
+
+========================================================================
+SIGUIENTE PASO
+========================================================================
+Con estos números se escribe la sección de hallazgos del README.
+Para usar la priorización sobre una lista propia:
+    python src/priorizar.py mis_vulnerabilidades.txt
