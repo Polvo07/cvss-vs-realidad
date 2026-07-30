@@ -1,0 +1,36 @@
+# --- Data -------------------------------------------------------------------
+# Raw feeds: rebuilt by `src/descargar.py` from the EPSS, KEV and NVD sources.
+# Together they are ~18 MB and add nothing that the pipeline cannot regenerate.
+data/epss.csv
+data/nvd_cvss.csv
+
+# Derived analysis table (~19 MB): rebuilt by `src/unir.py` from the three feeds.
+# A reproducible 5,000-row sample with a fixed seed is versioned instead, so the
+# schema and derived columns can be inspected without running the pipeline.
+# See `src/generar_muestra.py`.
+data/vulnerabilidades.csv
+
+# Kept on purpose: the CISA KEV catalog (~96 KB) and the seeded sample are small
+# and let anyone read the model without downloading anything.
+!data/kev.csv
+!data/muestra_vulnerabilidades.csv
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# --- Credentials ------------------------------------------------------------
+# The NVD API key is read from an environment variable, never committed.
+.env
+.env.*
+*.token
+secrets.json
+
+# --- OS ---------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
